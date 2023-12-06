@@ -10,11 +10,16 @@
     "format:all": "prettier --config=\"./.prettierrc.json\" \"./**/*.{js,jsx,ts,tsx,css,json}\" --write"
   },
   "dependencies": {
+    "@types/html-escaper": "^3.0.2",
+    "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "framer-motion": "^10.16.12",
+    "html-escaper": "^3.0.3",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^4.12.0",
     "tailwind-merge": "^2.1.0",
     "tw-merge": "^0.0.1-alpha.3"
   },

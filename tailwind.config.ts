@@ -3,7 +3,6 @@ import defaultTheme from "tailwindcss/defaultTheme";
 
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
-  darkMode: "media",
   theme: {
     extend: {
       fontFamily: {
@@ -19,17 +18,17 @@ const config: Config = {
         },
         gray: {
           DEFAULT: "#333333",
-          1: "#4F4F4F",
-          2: "#828282",
-          3: "#BDBDBD",
-          4: "#E0E0E0"
+          1: "#4F4F52",
+          2: "#828285",
+          3: "#BDBDC0",
+          4: "#E0E0E4"
         },
         white: "#F8FAFC",
         state: {
           info: "#2F80ED",
-          error: "#27AE60",
+          success: "#27AE60",
           warning: "#E2B93B",
-          success: "#EB5757"
+          error: "#EB5757"
         }
       }
     }

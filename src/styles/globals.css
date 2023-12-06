@@ -4,5 +4,10 @@
 
 body {
   @apply bg-white text-gray-2;
-  @apply dark:bg-black dark:text-gray-2;
+}
+
+@layer components {
+  .container {
+    @apply max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl;
+  }
 }
