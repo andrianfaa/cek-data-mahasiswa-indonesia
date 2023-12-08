@@ -34,7 +34,7 @@ class MahasiswaServices {
   static async search(query: string, sortBy?: keyof TMahasiswa): Promise<ResponseAPI<TMahasiswa[]>> {
     const escapedQuery = escape(query);
     const response = await FetchAPI<{ mahasiswa: TKemdikbudMahasiswaResponse[] }>(
-      `${process.env.NEXT_APP_KEMDIKBUD_API_URL || "https://api-frontend.kemdikbud.go.id"}/hit_mhs/${escapedQuery}`,
+      `${process.env.NEXT_APP_KEMDIKBUD_API_URL || ""}/hit_mhs/${escapedQuery}`,
       {
         method: "GET"
       }
@@ -70,7 +70,7 @@ class MahasiswaServices {
       status: response.status,
       message: response.statusText,
       data: formattedData,
-      data_length: Array.isArray(formattedData) ? formattedData.length : undefined
+      data_length: formattedData.length
     };
   }
 

@@ -41,7 +41,7 @@ function Home() {
     if (!searchValue) {
       setError({
         isError: true,
-        message: "NIM/NPM, Prodi or Mahasiswa Name is required!"
+        message: "Nama Mahasiswa, NIM/NPM, atau Prodi di butuhkan!"
       });
       return;
     }
