@@ -1,11 +1,12 @@
 import { tw } from "@/lib/helpers";
+import Link from "next/link";
 import type { TMahasiswa } from "@/services/mahasiswa";
 
 interface CardProps extends TMahasiswa {
   className?: string;
 }
 
-function Card({ nama, nim, prodi, univ, className }: CardProps) {
+function Card({ id, nama, nim, prodi, univ, className }: CardProps) {
   const data = [
     {
       key: "Nama",
@@ -26,7 +27,8 @@ function Card({ nama, nim, prodi, univ, className }: CardProps) {
   ];
 
   return (
-    <div
+    <Link
+      href={`/detail/${id}`}
       className={tw(
         className,
         "rounded border border-gray-4 hover:border-black-1 focus:border-black-1",
@@ -56,7 +58,7 @@ function Card({ nama, nim, prodi, univ, className }: CardProps) {
           </tbody>
         </table>
       </div>
-    </div>
+    </Link>
   );
 }
 

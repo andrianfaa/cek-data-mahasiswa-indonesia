@@ -6,8 +6,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ResponseAPI<TMahasiswa[]>>) {
   if (req.method === "POST") {
     const { query } = req.body;
+    const escapedQuery = escape(query);
 
-    if (!query) {
+    if (!escapedQuery) {
       res.status(400).send({
         message: "NIM/NPM, Prodi or Mahasiswa Name is required!",
         status: 400
@@ -16,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     try {
-      const { status, message, data, data_length } = await MahasiswaServices.search(escape(query));
+      const { status, message, data, data_length } = await MahasiswaServices.search(escapedQuery);
 
       res.status(status).send({
         status,
@@ -31,5 +32,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         message: error.response.statusText || "error"
       });
     }
+
+    return;
   }
+
+  res.status(404).json({
+    status: 404,
+    message: "Endpoint not found"
+  } as ResponseAPI<never>);
 }

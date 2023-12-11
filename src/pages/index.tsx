@@ -6,7 +6,7 @@ import { FetchAPI } from "@/lib/utils";
 import type { TMahasiswa } from "@/services/mahasiswa";
 import { motion, type AnimationProps } from "framer-motion";
 import { escape } from "html-escaper";
-import { FormEvent, useRef, useState } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { BiLoaderAlt } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
 
@@ -194,10 +194,11 @@ function Home() {
       >
         {data && (
           <div className={tw("flex flex-row flex-wrap items-stretch justify-start gap-4", "p-6", "w-full")}>
-            {data.map(({ nama, nim, univ, prodi }, index) => {
+            {data.map(({ id, nama, nim, univ, prodi }, index) => {
               return (
                 <Card
                   key={`${index}`}
+                  id={id}
                   nama={nama}
                   nim={nim}
                   univ={univ}
