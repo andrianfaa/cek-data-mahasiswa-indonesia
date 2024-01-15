@@ -337,6 +337,8 @@ export const getStaticProps: GetStaticProps<PageProps, { id: string }> = async (
   const id = params?.id;
   const response = await MahasiswaServices.getDetailMahasiswa(id || "");
 
+  console.log(response);
+
   if (response.status === 200) {
     return {
       props: {
