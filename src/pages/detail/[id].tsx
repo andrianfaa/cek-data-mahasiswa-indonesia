@@ -2,7 +2,8 @@ import { Badge } from "@/components/badge";
 import { Button } from "@/components/button";
 import { Heading, Text } from "@/components/typography";
 import { tw } from "@/lib/helpers";
-import MahasiswaServices, { type TDetailMahasiswa } from "@/services/mahasiswa";
+import { FetchAPI } from "@/lib/utils";
+import { type TDetailMahasiswa } from "@/services/mahasiswa";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -335,14 +336,23 @@ const DetailMahasiswaPage: NextPage<PageProps> = ({ data }: PageProps) => {
 
 export const getStaticProps: GetStaticProps<PageProps, { id: string }> = async ({ params }) => {
   const id = params?.id;
-  const response = await MahasiswaServices.getDetailMahasiswa(id || "");
+  // const response = await MahasiswaServices.getDetailMahasiswa(id || "");
+  const response = await FetchAPI<ResponseAPI<TDetailMahasiswa>>(
+    `${process.env.NEXT_APP_CLIENT_URL || "http://localhost:3000"}/api/mahasiswa`,
+    {
+      method: "GET",
+      data: {
+        query: id
+      }
+    }
+  );
 
   console.log(response);
 
   if (response.status === 200) {
     return {
       props: {
-        data: response.data
+        data: response.data.data
       }
     };
   }

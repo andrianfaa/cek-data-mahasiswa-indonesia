@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import MahasiswaServices, { type TMahasiswa } from "@/services/mahasiswa";
+import MahasiswaServices, { TDetailMahasiswa, type TMahasiswa } from "@/services/mahasiswa";
 import { escape } from "html-escaper";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<ResponseAPI<TMahasiswa[]>>) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseAPI<TMahasiswa[] | TDetailMahasiswa>>
+) {
   if (req.method === "POST") {
     const { query } = req.body;
     const escapedQuery = escape(query);
@@ -24,6 +27,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         message,
         data,
         data_length
+      });
+    } catch (error: any) {
+      console.error(error);
+
+      res.status(error.response.status || 500).send({
+        status: error.response.status || 500,
+        message: error.response.statusText || "error"
+      });
+    }
+
+    return;
+  }
+
+  if (req.method === "GET") {
+    const { query } = req.body;
+    const escapedQuery = escape(query);
+
+    if (!escapedQuery) {
+      res.status(400).send({
+        message: "ERROR",
+        status: 400
+      });
+    }
+
+    try {
+      const { message, status, data } = await MahasiswaServices.getDetailMahasiswa(escapedQuery);
+
+      res.status(status).send({
+        status,
+        message,
+        data
       });
     } catch (error: any) {
       console.error(error);
