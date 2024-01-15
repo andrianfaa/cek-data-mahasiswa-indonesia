@@ -29,9 +29,6 @@ function Home() {
     },
     animate: {
       translateY: 0
-    },
-    transition: {
-      // duration: 0.2
     }
   };
 
@@ -82,45 +79,29 @@ function Home() {
         }}
       >
         <div ref={headerContentRef} className={tw("py-20")}>
-          <div className="overflow-hidden py-1">
-            <motion.h1
-              className={Heading({
-                type: "h1"
-              })}
-              {...framerMotionAnimation}
-              transition={{
-                ...framerMotionAnimation.transition,
-                delay: 0.5
-              }}
-            >
-              Cek data Mahasiswa
-            </motion.h1>
+          <div className="mb-2 overflow-hidden py-0.5">
+            <Heading.h1 animated>Cek data Mahasiswa</Heading.h1>
           </div>
 
-          <div className="mb-4 overflow-hidden py-1">
-            <motion.p
-              className={Text({
-                size: "normal"
-              })}
-              {...framerMotionAnimation}
+          <div className="mb-6 overflow-hidden py-0.5">
+            <Text.p
+              animated
               transition={{
-                ...framerMotionAnimation.transition,
-                delay: 0.6
+                delay: 0.1
               }}
             >
               Cek data Mahasiswa seluruh Indonesia berdasarkan Nama, NIM/NPM atau Prodi.
-            </motion.p>
+            </Text.p>
           </div>
 
-          <div className="overflow-hidden py-1">
+          <div className="overflow-hidden py-0.5">
             <motion.form
               onSubmit={handleOnSubmit}
               className={tw("max-w-md", "flex flex-row items-center", "relative")}
               {...framerMotionAnimation}
               transition={{
-                ...framerMotionAnimation.transition,
                 type: "spring",
-                delay: 0.7,
+                delay: 0.5,
                 duration: 0.3,
                 bounce: 0.25
               }}
@@ -172,16 +153,7 @@ function Home() {
             </motion.form>
           </div>
 
-          {error.isError && (
-            <span
-              className={Text({
-                size: "small",
-                className: "text-state-error"
-              })}
-            >
-              {error.message}
-            </span>
-          )}
+          {error.isError && <Text.span>{error.message}</Text.span>}
         </div>
       </header>
 
@@ -203,6 +175,7 @@ function Home() {
                   nim={nim}
                   univ={univ}
                   prodi={prodi}
+                  isMatched={searchValue.toLowerCase() === nama.toLowerCase()}
                   className={tw("w-full md:w-[calc(50%-8px)]")}
                 />
               );

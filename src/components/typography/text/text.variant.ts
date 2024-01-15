@@ -4,7 +4,7 @@ export const Text = cva([], {
   variants: {
     size: {
       normal: ["text-normal leading-5"],
-      small: ["text-[13px] leading-5"],
+      small: ["text-[13px] leading-5 md:text-sm"],
       large: ["text-lg leading-6"]
     }
   },

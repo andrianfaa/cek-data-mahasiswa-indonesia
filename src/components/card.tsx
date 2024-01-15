@@ -4,9 +4,10 @@ import type { TMahasiswa } from "@/services/mahasiswa";
 
 interface CardProps extends TMahasiswa {
   className?: string;
+  isMatched: boolean;
 }
 
-function Card({ id, nama, nim, prodi, univ, className }: CardProps) {
+function Card({ id, nama, nim, prodi, univ, className, isMatched }: CardProps) {
   const data = [
     {
       key: "Nama",
@@ -45,10 +46,14 @@ function Card({ id, nama, nim, prodi, univ, className }: CardProps) {
 
               return (
                 <tr key={loopKey} className={tw("w-full", "text-sm md:text-base")}>
-                  <td className={tw("px-4 py-2")}>{key}</td>
+                  <td className={tw("px-4 py-2", key === "nama" && isMatched && "text-black")}>{key}</td>
                   <td>:</td>
                   <td
-                    className={tw("px-4 py-2", key === "Nama" && "group-hover:text-black-1 group-focus:text-black-1")}
+                    className={tw(
+                      "px-4 py-2",
+                      key === "Nama" && "group-hover:text-black-1 group-focus:text-black-1",
+                      key === "Nama" && isMatched && "text-black"
+                    )}
                   >
                     {value}
                   </td>

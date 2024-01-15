@@ -26,7 +26,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         data_length
       });
     } catch (error: any) {
-      console.log(error);
+      console.error(error);
+
       res.status(error.response.status || 500).send({
         status: error.response.status || 500,
         message: error.response.statusText || "error"

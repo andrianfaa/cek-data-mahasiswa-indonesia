@@ -18,11 +18,11 @@ export interface TDetailMahasiswa {
   datastatuskuliah: {
     id_smt: string;
     sks_smt: number;
-    nm_stat_mahasiswa: string;
+    nm_stat_mhs: string;
   }[];
   datastudi: {
     kode_mk: string;
-    nama_mk: string;
+    nm_mk: string;
     sks_mk: string;
     id_smt: string;
     nilai_huruf: null;
