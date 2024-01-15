@@ -4,7 +4,7 @@ import { Heading, Text } from "@/components/typography";
 import { tw } from "@/lib/helpers";
 import { FetchAPI } from "@/lib/utils";
 import { type TDetailMahasiswa } from "@/services/mahasiswa";
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
@@ -334,7 +334,7 @@ const DetailMahasiswaPage: NextPage<PageProps> = ({ data }: PageProps) => {
   );
 };
 
-export const getStaticProps: GetStaticProps<PageProps, { id: string }> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<PageProps, { id: string }> = async ({ params }) => {
   const id = params?.id;
   // const response = await MahasiswaServices.getDetailMahasiswa(id || "");
   const response = await FetchAPI<ResponseAPI<TDetailMahasiswa>>(
@@ -362,11 +362,11 @@ export const getStaticProps: GetStaticProps<PageProps, { id: string }> = async (
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: false
-  };
-};
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [],
+//     fallback: false
+//   };
+// };
 
 export default DetailMahasiswaPage;
